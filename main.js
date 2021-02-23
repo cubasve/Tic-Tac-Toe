@@ -85,9 +85,11 @@ function render() {
     if (winner === 'Tie') {
         message.innerHTML = `It's a tie!`;
     } else if (winner) {
-        message.innerHTML = `${colors[winner].toUpperCase()} is the winner!`
+        // let color = colors[winner];
+        message.innerHTML = `<span style="color:${colors[winner]}">${colors[winner].toUpperCase()}</span> is the winner!`
     } else {
-        message.innerHTML = `${colors[turn].toUpperCase()}'s turn`
+        // let color = colors[turn];
+        message.innerHTML = `<span style="color:${colors[turn]}">${colors[turn].toUpperCase()}'s</span> turn`
     }
 }
 

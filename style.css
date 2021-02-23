@@ -34,22 +34,24 @@ td div {
 }
 
 tr td:nth-child(2) {
-    border-left: 4px dashed red;
-    border-right: 4px dashed red;
+    /* vertical lines of the game */
+    border-left: 4px dashed black;
+    border-right: 4px dashed black;
 }
 
 tr:nth-child(2) td {
-    border-top: 4px dashed blue;
-    border-bottom: 4px dashed blue;
+    /* horizontal lines of the game */
+    border-top: 4px dashed black;
+    border-bottom: 4px dashed black;
 }
 
 button {
     margin-top: 30px;
-    padding: 15px;
+    padding: 10px;
     background-color: black;
     color: white;
     border-radius: 5px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 button:hover {
