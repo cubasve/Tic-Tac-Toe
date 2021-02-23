@@ -33,8 +33,47 @@ document.querySelector('button').addEventListener('click', initialize);
 
 initialize();
 
-function handleMove() {
+function handleMove(event) {
+    //Get the index of the square
+    //id is 'square0' - only want the number
+    //replace 'square' with an empty string
+    const index = parseInt(event.target.id.replace('square', ''));
+    //Check if square is available and return if not
+    if (board[index] || winner) return;
+
+    board[index] = turn;
+    turn *= -1; //turn = turn * -1
+    winner = getWinner();
+    render();
+}
+
+function getWinner() {
+    //OPTION 1: We have a winner
+    for (let i = 0; i < winningCombinations.length; i++) {
+        if (Math.abs(
+            board[winningCombinations[i][0]] +
+            board[winningCombinations[i][1]] +
+            board[winningCombinations[i][2]] === 3
+        )) {
+            return board[winningCombinations[i][0]];
+        }
+    }
+    /* Less elegant approach:
+    if (Math.abs(board[0] + board[1] + board[2]) === 3) return board[0];
+    if (Math.abs(board[3] + board[4] + board[5]) === 3) return board[3];
+    if (Math.abs(board[6] + board[7] + board[8]) === 3) return board[6];
+    if (Math.abs(board[0] + board[3] + board[6]) === 3) return board[0];
+    if (Math.abs(board[1] + board[4] + board[7]) === 3) return board[1];
+    if (Math.abs(board[2] + board[5] + board[8]) === 3) return board[2];
+    if (Math.abs(board[0] + board[4] + board[8]) === 3) return board[0];
+    if (Math.abs(board[2] + board[4] + board[6]) === 3) return board[2];
+    */
+
+    //OPTION 2: Game is still going - no winner yet
+    if (board.includes(null)) return null;
     
+    //OPTION 3: It's a tie
+    return 'Tie';
 }
 
 //Updates the DOM
