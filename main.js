@@ -37,10 +37,27 @@ function handleMove() {
     
 }
 
+//Updates the DOM
 function render() {
+    board.forEach((square, index) => {
+        squares[index].style.background = colors[square];
+    });
 
+    if (winner === 'Tie') {
+        message.innerHTML = `It's a tie!`;
+    } else if (winner) {
+        message.innerHTML = `${colors[winner].toUpperCase()} is the winner!`
+    } else {
+        message.innerHTML = `${colors[turn].toUpperCase()}'s turn`
+    }
 }
 
+//NOTE: Variables are already declared in app's state section
+//Don't redeclare them (let, const) - just assign them (ex. turn = 1)
 function initialize() {
-
+    //NOTE: Could also do board = [null, null, null, null, null, null, null, null, null]
+    board = new Array(9).fill(null);
+    turn = 1; //Player 1 (green) goes first
+    winner = null;
+    render();
 }
